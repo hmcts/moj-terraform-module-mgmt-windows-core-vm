@@ -3,7 +3,7 @@
 def channel = '#devops-builds'
 
 properties(
-  [[$class: 'GithubProjectProperty', projectUrlStr: 'http://github.com/hmcts/moj-terraform-module-mgmt-windows-vm/'],
+  [[$class: 'GithubProjectProperty', projectUrlStr: 'http://github.com/hmcts/moj-terraform-module-mgmt-windows-core-vm/'],
    pipelineTriggers([[$class: 'GitHubPushTrigger']])]
 )
 
