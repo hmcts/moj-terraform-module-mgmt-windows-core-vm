@@ -11,7 +11,7 @@ properties(
 
 node {
   ws("${WORKSPACE}") {
-    withEnv(["PATH=${env.PATH}:/usr/local/sbin"]) {
+    withEnv(["PATH=${env.PATH}:/usr/local/sbin"]){
     try {
       wrap([$class: 'AnsiColorBuildWrapper', colorMapName: 'xterm']) {
 
@@ -119,7 +119,6 @@ node {
             }
          }
       }
-    }
 
     } catch (err) {
       notifyBuildFailure channel: "${channel}"
@@ -128,4 +127,5 @@ node {
         deleteDir()
       }
     }
+}
 }
