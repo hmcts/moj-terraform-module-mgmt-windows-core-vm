@@ -14,7 +14,7 @@ module "vm-test-tf-mgmtwinvm" {
   storage_account             = "${azurerm_storage_account.test.name}"
   diagnostics_storage_account = "${azurerm_storage_account.test.name}"
   location                    = "${var.azure_region}"
-  vm_size                     = "Standard_B1ms"                      # Use lower specs to save money
+  vm_size                     = "Standard_B1ms"                        # Use lower specs to save money
   instance_count              = 1
   product                     = "mgmt"
   env                         = "sandbox"

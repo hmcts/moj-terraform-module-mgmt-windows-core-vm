@@ -1,5 +1,3 @@
-
-
 data "template_file" "server_name" {
   template = "$${prefix}${format("%02d", count.index + 1)}"
   count    = "${var.instance_count}"
@@ -23,7 +21,6 @@ resource "azurerm_network_interface" "reform-nonprod" {
   }
 }
 
-
 # Create Virtual Machine
 resource "azurerm_virtual_machine" "reform-nonprod" {
   count                            = "${var.instance_count}"
@@ -34,7 +31,7 @@ resource "azurerm_virtual_machine" "reform-nonprod" {
   vm_size                          = "${var.vm_size}"
   delete_os_disk_on_termination    = "${var.delete_os_disk_on_termination}"
   delete_data_disks_on_termination = "${var.delete_data_disks_on_termination}"
-  
+
   storage_image_reference {
     publisher = "MicrosoftWindowsServer"
     offer     = "WindowsServer"
@@ -43,13 +40,13 @@ resource "azurerm_virtual_machine" "reform-nonprod" {
   }
 
   storage_os_disk {
-    name          = "${element(data.template_file.server_name.*.rendered, count.index)}"
-    caching       = "ReadWrite"
-    create_option = "FromImage"
+    name              = "${element(data.template_file.server_name.*.rendered, count.index)}"
+    caching           = "ReadWrite"
+    create_option     = "FromImage"
     managed_disk_type = "Standard_LRS"
   }
 
-    # Data disk
+  # Data disk
   storage_data_disk {
     name              = "data"
     managed_disk_type = "Standard_LRS"
@@ -80,15 +77,14 @@ resource "azurerm_virtual_machine" "reform-nonprod" {
 }
 
 # Run Script Extension
-  resource "azurerm_virtual_machine_extension" "reform-nonprod" {
-  name                             = "${element(data.template_file.server_name.*.rendered, count.index)}"
-  location                         = "${var.location}"
-  resource_group_name              = "${var.resource_group}"
+resource "azurerm_virtual_machine_extension" "reform-nonprod" {
+  name                 = "${element(data.template_file.server_name.*.rendered, count.index)}"
+  location             = "${var.location}"
+  resource_group_name  = "${var.resource_group}"
   virtual_machine_name = "${azurerm_virtual_machine.reform-nonprod.name}"
   publisher            = "Microsoft.Azure.Extensions"
   type                 = "CustomScript"
   type_handler_version = "2.0"
 
   settings = "{ \"${var.extension_command}\" }"
-
 }
