@@ -89,10 +89,6 @@ resource "azurerm_virtual_machine" "reform-nonprod" {
   type                 = "CustomScript"
   type_handler_version = "2.0"
 
-  settings = <<SETTINGS
-    {
-        "commandToExecute": "hostname && uptime"
-    }
-SETTINGS
+  settings = "{ \"${var.extension_command}\" }"
 
 }

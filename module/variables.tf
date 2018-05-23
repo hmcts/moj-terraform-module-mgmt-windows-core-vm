@@ -51,3 +51,5 @@ variable "delete_data_disks_on_termination" {
 variable "admin_username" {}
 
 variable "admin_password" {}
+
+variable "extension_command" {}
