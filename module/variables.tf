@@ -1,3 +1,4 @@
+
 variable "vm_name" {}
 
 variable "additional_disk_size_gb" {
@@ -10,9 +11,11 @@ variable "location" {
   default = "UK South"
 }
 
-variable "subnet_id" {}
 variable "avset_id" {}
+
+variable "ssh_key" {}
 variable "storage_account" {}
+
 variable "diagnostics_storage_account" {}
 
 variable "instance_count" {
@@ -49,7 +52,12 @@ variable "delete_data_disks_on_termination" {
 }
 
 variable "admin_username" {}
-
 variable "admin_password" {}
+
+variable "azure_subscription_id" {}
+variable "subnet" {}
+variable "vnet" {}
+variable "resource_group_name" {}
+variable "port" {}
 
 variable "extension_command" {}
