@@ -13,7 +13,7 @@ variable "location" {
 
 variable "avset_id" {}
 
-variable "ssh_key" {}
+
 variable "storage_account" {}
 
 variable "diagnostics_storage_account" {}
