@@ -63,6 +63,7 @@ resource "azurerm_virtual_machine" "reform-nonprod" {
 
   os_profile_windows_config {
     enable_automatic_upgrades = true
+    provision_vm_agent = true
   }
 
   tags {
