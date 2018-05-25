@@ -86,5 +86,9 @@ resource "azurerm_virtual_machine_extension" "reform-nonprod" {
   type                 = "CustomScript"
   type_handler_version = "2.0"
 
-  settings = "{ \"${var.extension_command}\" }"
+  settings = <<SETTINGS
+     {
+       "${var.extension_command}" 
+     }
+SETTINGS
 }
