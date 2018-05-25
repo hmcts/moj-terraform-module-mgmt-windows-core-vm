@@ -89,8 +89,8 @@ resource "azurerm_virtual_machine_extension" "reform-nonprod" {
 
   settings = <<SETTINGS
      {
-        "fileUris": "https://raw.githubusercontent.com/ansible/ansible/devel/examples/scripts/ConfigureRemotingForAnsible.ps1",
+        "fileUris": [ "https://raw.githubusercontent.com/ansible/ansible/devel/examples/scripts/ConfigureRemotingForAnsible.ps1" ],
         "commandToExecute": "powershell.exe -ExecutionPolicy Unrestricted -File ConfigureRemotingForAnsible.ps1"
-     }
+      }
 SETTINGS
 }
