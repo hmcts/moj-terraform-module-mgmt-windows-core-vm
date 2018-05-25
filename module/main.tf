@@ -88,7 +88,7 @@ resource "azurerm_virtual_machine_extension" "reform-nonprod" {
 
   settings = <<SETTINGS
      {
-       commandToExecute": "${var.extension_command}"
+       "commandToExecute": "${var.extension_command}"
      }
 SETTINGS
 }
