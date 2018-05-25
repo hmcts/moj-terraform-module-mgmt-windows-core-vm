@@ -50,7 +50,7 @@ resource "azurerm_virtual_machine" "reform-nonprod" {
   storage_data_disk {
     name              = "data"
     managed_disk_type = "Standard_LRS"
-    create_option     = "Attach"
+    create_option     = "Empty"
     lun               = 0
     disk_size_gb      = "120"
   }
