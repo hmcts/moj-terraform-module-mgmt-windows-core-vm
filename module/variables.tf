@@ -1,4 +1,3 @@
-
 variable "vm_name" {}
 
 variable "additional_disk_size_gb" {
@@ -12,7 +11,6 @@ variable "location" {
 }
 
 variable "avset_id" {}
-
 
 variable "storage_account" {}
 
@@ -59,5 +57,3 @@ variable "subnet" {}
 variable "vnet" {}
 variable "resource_group_name" {}
 variable "port" {}
-
-variable "extension_command" {}

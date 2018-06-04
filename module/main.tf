@@ -63,7 +63,7 @@ resource "azurerm_virtual_machine" "reform-nonprod" {
 
   os_profile_windows_config {
     enable_automatic_upgrades = true
-    provision_vm_agent = true
+    provision_vm_agent        = true
   }
 
   tags {
@@ -75,22 +75,4 @@ resource "azurerm_virtual_machine" "reform-nonprod" {
     terraform = "true"
     role      = "${var.role}"
   }
-}
-
-# Run Script Extension
-resource "azurerm_virtual_machine_extension" "reform-nonprod" {
-  name                 = "${element(data.template_file.server_name.*.rendered, count.index)}"
-  location             = "${var.location}"
-  resource_group_name  = "${var.resource_group}"
-  virtual_machine_name = "${azurerm_virtual_machine.reform-nonprod.name}"
-  publisher            = "Microsoft.Azure.Extensions"
-  type                 = "CustomScript"
-  type_handler_version = "1.8"
-
-  settings = <<SETTINGS
-     {
-        "fileUris": [ "https://raw.githubusercontent.com/ansible/ansible/devel/examples/scripts/ConfigureRemotingForAnsible.ps1" ],
-        "commandToExecute": "powershell.exe -ExecutionPolicy Unrestricted -File ConfigureRemotingForAnsible.ps1"
-      }
-SETTINGS
 }
